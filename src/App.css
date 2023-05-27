@@ -1,0 +1,11 @@
+.App{
+    display: flex;
+    flex-direction: column;
+    width: 45rem;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    display: inline-block;
+    width: 7rem;
+}
