@@ -1,0 +1,46 @@
+from flask import Flask, render_template, request
+import requests
+from bs4 import BeautifulSoup
+from googlesearch import search
+
+app = Flask(_name_)
+
+def search_first_result(query):
+    try:
+        search_results = search(query, num_results=1)
+        first_result = next(search_results)
+        return first_result
+    except StopIteration:
+        print("No search results found.")
+        return None
+
+def get_html(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise exception for non-2xx status codes
+        html_code = response.text
+        return html_code
+    except requests.exceptions.RequestException as e:
+        print("An error occurred:", e)
+        return None
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+        product = request.form.get('product')
+        first_url = search_first_result(product)
+        if first_url:
+            html = get_html(first_url)
+            if html:
+                soup = BeautifulSoup(html, "html.parser")
+                elements = soup.find_all("div", class_="t-ZTKy")
+                result = [element.text for element in elements]
+                return render_template('index.html', result=result)
+            else:
+                return render_template('index.html', message='An error occurred while retrieving the HTML code.')
+        else:
+            return render_template('index.html', message='No search results found.')
+    return render_template('index.html')
+
+if _name_ == '_main_':
+    app.run(host='0.0.0.0', debug=True)
