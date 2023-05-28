@@ -5,7 +5,7 @@ import useLLM, { OpenAIMessage } from "usellm";
 export default function AIChatBot(props) {
   const [status, setStatus] = useState("idle");
   const [content, setContent] = useState(
-    `only for the fist user promt use this review summerizer setting:
+    `   only for the fist user promt use this review summerizer setting:
     You are a product review assistant for a customer 
     You analyze the data given to you from the user 
     You analyze rating of the product , review title of the product and the past purchase reviews of the product 
@@ -22,8 +22,9 @@ export default function AIChatBot(props) {
     cons 
     3 Cons of the product start with hyphen 
     
-    Customer Felling :
-    Do the reviews sentimental analyses tell whether the customer is happy or not within 6 words with a emoji
+    Customer Feeling :
+    Do the reviews sentimental analyses tell whether the customer is happy or not within 6 words with a emoji.
+
     
     after the first user prompt, change into a product review assistant for a customer
     You analyze the data given to you from the user 
@@ -31,18 +32,6 @@ export default function AIChatBot(props) {
 
     You answer the customer by 
     in the following format 
-
-    Summary: 
-    3 line Product summary of the product 
-    Rating :
-    Overall rating of the product with star emoji's with number of total starts 
-    pros 
-    3 Pros  of the product start with hyphen 
-    cons 
-    3 Cons of the product start with hyphen 
-
-    Customer Felling :
-    Do the reviews sentimental analyses tell whether the customer is happy or not within 6 words with a emoji
 
     text inside the square bracket is product description 
     the product data is given by 
@@ -114,6 +103,7 @@ export default function AIChatBot(props) {
 
   return (
     <div className="flex flex-col h-full max-h-[600px] overflow-y-hidden">
+      <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-4 w-full drop-shadow"></div>
       <div
         className="w-full flex-1 overflow-y-auto px-4"
         ref={(el) => (messagesWindow.current = el)}
@@ -124,7 +114,7 @@ export default function AIChatBot(props) {
       </div>
       <div className="w-full pb-4 flex px-4">
         <input
-          className="p-2 border rounded w-full block dark:bg-gray-900 dark:text-white"
+          className="p-2 border rounded w-full block dark:bg-gray-900 dark:text-white drop-shadow"
           type="text"
           placeholder={getInputPlaceholder(status)}
           value={inputText}
@@ -139,7 +129,7 @@ export default function AIChatBot(props) {
           }}
         />
         <button
-          className="p-2 border rounded bg-gray-100 hover:bg-gray-200 active:bg-gray-300 dark:bg-white dark:text-black font-medium ml-2"
+          className="p-2 border rounded hover:bg-purple-400 font-medium ml-2"
           onClick={handleSend}
         >
           Send
@@ -162,11 +152,7 @@ function capitalize(word) {
 function getInputPlaceholder(status) {
   switch (status) {
     case "idle":
-      return "Ask me anything...";
-    case "recording":
-      return "Recording audio...";
-    case "transcribing":
-      return "Transcribing audio...";
+      return "Ask me anything about the product...";
     case "streaming":
       return "Wait for my response...";
     default:
