@@ -128,7 +128,7 @@ function App() {
 
   return (
     <div className="App flex flex-col w-[48rem] justify-center items-center bg-gray-900 h-full text-white max-h-[35rem]">
-      <h1 className='m-4 text-2xl font-semibold'>Review Pilot</h1>
+      <h1 className='m-4 text-2xl font-semibold'>ShopEzee</h1>
       {!Review && <button onClick={() => review()} class='btn text-base bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 m-4 p-2 rounded-sm drop-shadow'>Review Product</button>}
       {Review && <AIChatBot review={Review} details={Details} />}
     </div>

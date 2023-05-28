@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "My Chrome Extension",
+  "name": "ShopEzee",
   "version": "1.0.0",
-  "description": "This is my first Chrome extension.",
+  "description": "ShopEzee is a chrome extension that helps you to make better buying decisions.",
   "permissions": [
     "activeTab",
     "scripting"
